@@ -267,6 +267,16 @@ function ProductList({ onHomeClick }) {
         }));
     };
 
+    const isAddedToCart = (plantName) => {
+        return addedToCart[plantName]
+    };
+
+    const removeAddedToCart = (plantName) => {
+        setAddedToCart((prevState) => ({
+            ...prevState, [plantName]: false, //Change plant name as property to value "false"
+        }));
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -300,9 +310,10 @@ function ProductList({ onHomeClick }) {
                                         <div className='product-cost'>${plant.cost}</div>
                                         <div className='product-description'>{plant.description}</div>
                                         <button
-                                            className='product-button'
+                                            className={isAddedToCart(plant.name) ? 'product-button added-to-cart' : 'product-button'}
                                             onClick={() => handleAddToCart(plant)}
-                                        >Add to Cart</button>
+                                            disabled={isAddedToCart(plant.name)}
+                                        >{isAddedToCart(plant.name) ? "Added to Cart" : "Add to Cart"}</button>
                                     </div>
                                 ))}
                             </div>
@@ -311,7 +322,7 @@ function ProductList({ onHomeClick }) {
 
                 </div>
             ) : (
-                <CartItem onContinueShopping={handleContinueShopping} />
+                <CartItem onContinueShopping={handleContinueShopping} onRemoveAddedToCart={removeAddedToCart} />
             )}
         </div>
     );
