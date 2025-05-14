@@ -10,7 +10,6 @@ function ProductList({ onHomeClick }) {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
     //Hooks for Redux ToolKit
-    const cartItems = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
     const plantsArray = [
