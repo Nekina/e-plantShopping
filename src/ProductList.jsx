@@ -285,7 +285,7 @@ function ProductList({ onHomeClick }) {
                 totalQuantity += item.quantity;
             }
         });
-        return (totalQuantity === 0 ? "" : totalQuantity)
+        return (totalQuantity === 0 ? "0" : totalQuantity) //Changed from "" to 0 when cart is empty
     }
 
     return (
